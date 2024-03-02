@@ -56,6 +56,18 @@ public class TradutorServletTest {
         );
     }
     
+    @Test
+    public void deveriaTraduzirAPalavraLivroParaBook() {
+        driver.get("http://localhost:8080/servlet-mvc-duoulingou/");
+        driver.findElement(By.id("palavra")).click();
+        driver.findElement(By.id("palavra")).sendKeys("LivRo");
+        driver.findElement(By.id("btnSubmit")).click();
+        assertEquals(
+            "A tradução da palavra LivRo em inglês é Book",
+            driver.findElement(By.cssSelector("h1")).getText()
+        );
+    }
+    
     // TODO: remover
     @Test
     public void falhaPropositalmente() {
