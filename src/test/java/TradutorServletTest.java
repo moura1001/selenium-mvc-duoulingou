@@ -68,6 +68,18 @@ public class TradutorServletTest {
         );
     }
     
+    @Test
+    public void deveriaFornecerAMesmaPalavraInseridaComoSuaTraducaoPoisNaoExisteNoArquivoDicionario() {
+        driver.get("http://localhost:8080/servlet-mvc-duoulingou/");
+        driver.findElement(By.id("palavra")).click();
+        driver.findElement(By.id("palavra")).sendKeys("programar");
+        driver.findElement(By.id("btnSubmit")).click();
+        assertEquals(
+            "A tradução da palavra programar em inglês é Programar (palavra não encontrada)",
+            driver.findElement(By.cssSelector("h1")).getText()
+        );
+    }
+    
     // TODO: remover
     @Test
     public void falhaPropositalmente() {
